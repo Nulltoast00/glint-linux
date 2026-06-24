@@ -1,9 +1,39 @@
-name: glint-linux
+# yaml-language-server: $schema=https://blue-build.org
+name: glint-linux 
 description: Luv u Glint
-base-image: quay.io/fedora-ostree-desktops/kinoite
 image-version: rawhide
+base-image: quay.io/fedora-ostree-desktops/kinoite
 
 modules:
+  - type: dnf
+    install:
+      packages:
+        - wine-core
+        - wine-common
+        - gamemode         
+        - powertop         
+        - fastfetch        
+        - mesa-va-drivers  
+        - intel-media-driver
+        - NetworkManager-wifi
+        - bluez
+        - bluez-utils
+        - pipewire-utils
+        - openjdk21
+        - openjdk21-fastload
+
+  - type: flatpaks
+    notify: true
+    install:
+      packages:
+        - org.mozilla.firefox
+        - org.libreoffice.LibreOffice
+        - com.valvesoftware.Steam
+        - net.davidotek.pupgui2
+        - net.lutris.Lutris
+        - com.spotify.Client
+        - us.zoom.Zoom
+
   - type: script
     scripts:
       - glint-setup.sh
