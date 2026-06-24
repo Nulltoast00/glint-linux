@@ -51,3 +51,8 @@ Terminal=false
 Type=Application
 Categories=Game;
 EOF
+
+echo "Bypassing broken BlueBuild Flatpak server..."
+# This bypasses the broken web server by adding Flathub and your apps directly into the system image layers
+flatpak remote-add --if-not-exists flathub https://flathub.org
+flatpak install --system -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom
