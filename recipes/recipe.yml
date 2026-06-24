@@ -1,5 +1,5 @@
 name: glint-linux 
-description: Luv u Glint
+description: Rise and shine, Glint user... Rise and.. shine...
 
 # rawhide for faster update yayyaya
 base-image: ghcr.io/fedora-linux/fedora-kinoite:rawhide
