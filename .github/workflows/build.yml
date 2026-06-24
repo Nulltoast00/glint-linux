@@ -38,5 +38,8 @@ jobs:
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
 
-          # enabled by default, disable if your image is small and you want faster builds
+          # aw hell naw
+          no_sign_image: true
+
+          # enabled by default
           maximize_build_space: true
