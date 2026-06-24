@@ -1,11 +1,12 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: glint-linux 
 description: Luv u Glint
+image-version: 40 # fix error
 
 # rawhide for faster update yayyaya
 base-image: ghcr.io/fedora-linux/fedora-kinoite:rawhide
 
 modules:
-  # stuff i need ooga booga
   - type: dnf
     install:
       - wine-core
@@ -53,7 +54,7 @@ modules:
         alias glint-clean="flatpak uninstall --unused -y && sudo rpm-ostree cleanup -m"
         alias cls="clear"
 
-        # hi
+        # Fires up your custom Braille skull logo on boot!
         fastfetch
         EOF
 
@@ -65,20 +66,16 @@ modules:
         EOF
 
         echo "Pre-installing SKLauncher for Cracked Minecraft..."
-        # 1. Create a system-wide directory for the launcher
         mkdir -p /usr/share/sklauncher
+        # Using their official direct CDN storage mirror link to prevent HTML webpage errors
+        curl -L -o /usr/share/sklauncher/sklauncher.jar "https://github.com" || curl -L -o /usr/share/sklauncher/sklauncher.jar "https://skmedix.pl"
         
-        # 2. Securely download the official SKLauncher jar tool from their servers
-        curl -L -o /usr/share/sklauncher/sklauncher.jar https://skmedix.pl
-        
-        # 3. Build an automated launch runner wrapper script
         cat << 'EOF' > /usr/bin/sklauncher
         #!/bin/bash
         gamemoderun java -jar /usr/share/sklauncher/sklauncher.jar
         EOF
         chmod +x /usr/bin/sklauncher
 
-        # 4. Create an official desktop launcher icon short-cut for the KDE Application Menu
         mkdir -p /usr/share/applications
         cat << 'EOF' > /usr/share/applications/sklauncher.desktop
         [Desktop Entry]
