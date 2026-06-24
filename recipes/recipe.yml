@@ -8,31 +8,33 @@ base-image: ghcr.io/fedora-linux/fedora-kinoite:rawhide
 modules:
   - type: dnf
     install:
-      - wine-core
-      - wine-common
-      - gamemode         
-      - powertop         
-      - fastfetch        
-      - mesa-va-drivers  
-      - intel-media-driver
-      - NetworkManager-wifi
-      - bluez
-      - bluez-utils
-      - pipewire-utils
-      - openjdk21
-      - openjdk21-fastload
+      packages: # obj
+        - wine-core
+        - wine-common
+        - gamemode         
+        - powertop         
+        - fastfetch        
+        - mesa-va-drivers  
+        - intel-media-driver
+        - NetworkManager-wifi
+        - bluez
+        - bluez-utils
+        - pipewire-utils
+        - openjdk21
+        - openjdk21-fastload
 
   - type: flatpaks
     notify: true
     install:
-      - org.mozilla.firefox
-      - org.libreoffice.LibreOffice
-      - com.valvesoftware.Steam
-      - net.davidotek.pupgui2
-      - net.lutris.Lutris
-      - com.spotify.Client
-      - us.zoom.Zoom
+      packages: # obj
+        - org.mozilla.firefox
+        - org.libreoffice.LibreOffice
+        - com.valvesoftware.Steam
+        - net.davidotek.pupgui2
+        - net.lutris.Lutris
+        - com.spotify.Client
+        - us.zoom.Zoom
 
   - type: script
     scripts:
-      - glint-setup.sh # runs glint features
+      - glint-setup.sh # <--- CALLS ALL YOUR INTEL AND SKLAUNCHER TWEAKS SECURELY!
