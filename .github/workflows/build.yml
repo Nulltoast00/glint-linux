@@ -15,7 +15,7 @@ jobs:
     name: Build Custom Image
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
       id-token: write
     strategy:
@@ -32,4 +32,29 @@ jobs:
           pr_event_number: ${{ github.event.number }}
           maximize_build_space: true
           build_opts: "--no-sign"
-          skip_pre_build_validation: true
+
+      # THIS FORCES THE CLOUD TO CONVERT YOUR CONTAINER INTO A TRADITIONAL ISO FILE!
+      - name: Generate Offline ISO Installer
+        uses: blue-build/github-action@v1.11
+        with:
+          recipe: ${{ matrix.recipe }}
+          build_opts: "--no-sign"
+          # This tells the utility core to spit out a flashable file partition
+          generate_iso: true 
+
+      # Automatically pushes your finished ISO onto your front Releases tab!
+      - name: Upload ISO to GitHub Releases
+        uses: softprops/action-gh-releases@v2
+        if: github.ref == 'refs/heads/main'
+        with:
+          tag_name: "v1.0.0"
+          name: "Glint Linux (Standard Edition)"
+          body: |
+            Official offline bootable ISO installer for **Glint Linux**!
+            
+            Flash this file directly onto a USB drive using Ventoy or Rufus.
+          files: |
+            ./*.iso
+            ./output/*.iso
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
