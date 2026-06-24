@@ -8,7 +8,7 @@ base-image: ghcr.io/fedora-linux/fedora-kinoite:rawhide
 modules:
   - type: dnf
     install:
-      packages: # obj
+      packages:
         - wine-core
         - wine-common
         - gamemode         
@@ -26,15 +26,14 @@ modules:
   - type: flatpaks
     notify: true
     install:
-      packages: # obj
-        - org.mozilla.firefox
-        - org.libreoffice.LibreOffice
-        - com.valvesoftware.Steam
-        - net.davidotek.pupgui2
-        - net.lutris.Lutris
-        - com.spotify.Client
-        - us.zoom.Zoom
+      - org.mozilla.firefox
+      - org.libreoffice.LibreOffice
+      - com.valvesoftware.Steam
+      - net.davidotek.pupgui2
+      - net.lutris.Lutris
+      - com.spotify.Client
+      - us.zoom.Zoom
 
   - type: script
     scripts:
-      - glint-setup.sh # <--- CALLS ALL YOUR INTEL AND SKLAUNCHER TWEAKS SECURELY!
+      - glint-setup.sh
