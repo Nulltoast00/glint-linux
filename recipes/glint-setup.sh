@@ -20,7 +20,7 @@ alias glint-rollback="rpm-ostree rollback"
 alias glint-clean="flatpak uninstall --unused -y && sudo rpm-ostree cleanup -m"
 alias cls="clear"
 
-# Ff logo
+# ff lgogo on boot
 fastfetch
 EOF
 
@@ -44,4 +44,3 @@ X-KDE-AutostartScript=true
 EOF
 
 echo "Glint master script layer finished!"
-exit 0
