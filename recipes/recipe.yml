@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://blue-build.org
 name: glint-linux 
 description: Luv u Glint
 image-version: rawhide
@@ -19,7 +20,7 @@ modules:
         - bluez-utils
         - pipewire-utils
         - openjdk21
-        - openjdk21-fastload
+        # REMOVED openjdk21-fastload BECAUSE IT TRIPPED THE RAWHIDE PACKAGER
 
   - type: script
     scripts:
