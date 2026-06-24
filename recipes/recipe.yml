@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://blue-build.org
 name: glint-linux 
 description: Luv u Glint
 image-version: rawhide
@@ -21,18 +20,6 @@ modules:
         - pipewire-utils
         - openjdk21
         - openjdk21-fastload
-
-  - type: flatpaks
-    notify: true
-    install:
-      packages:
-        - org.mozilla.firefox
-        - org.libreoffice.LibreOffice
-        - com.valvesoftware.Steam
-        - net.davidotek.pupgui2
-        - net.lutris.Lutris
-        - com.spotify.Client
-        - us.zoom.Zoom
 
   - type: script
     scripts:
