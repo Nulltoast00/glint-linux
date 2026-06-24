@@ -13,14 +13,11 @@ modules:
         - gamemode         
         - powertop         
         - fastfetch        
-        - mesa-va-drivers  
-        - intel-media-driver
         - NetworkManager-wifi
         - bluez
         - bluez-utils
         - pipewire-utils
-        - openjdk21
-        # REMOVED openjdk21-fastload BECAUSE IT TRIPPED THE RAWHIDE PACKAGER
+        - openjdk21 # <--- Minecraft runtime engine wrapper
 
   - type: script
     scripts:
