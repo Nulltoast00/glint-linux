@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=SKLauncher Setup
+Comment=Click to download a Minecraft launcher
+Exec=bash -c "mkdir -p ~/Games/SKLauncher && curl -L -o ~/Games/SKLauncher/sklauncher.jar https://github.com && zenity --info --text='SKLauncher Installed successfully!' && sed -i 's/Name=.*/Name=SKLauncher/' ~/Desktop/sklauncher.desktop && sed -i 's/Exec=.*/Exec=gamemoderun java -jar ~\/Games\/SKLauncher\/sklauncher.jar/' ~/Desktop/sklauncher.desktop"
+Icon=minecraft
+Terminal=false
+Type=Application
+Categories=Game;
