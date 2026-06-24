@@ -1,43 +1,33 @@
-# BlueBuild Template &nbsp; [![bluebuild build badge](https://github.com/blue-build/template/actions/workflows/build.yml/badge.svg)](https://github.com/blue-build/template/actions/workflows/build.yml)
+## Glint Linux
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+Glint Linux is a custom made operating system built specifically for Intel and AMD devices. It is an atomic, immutable "remix" powered by Fedora Kinoite Rawhide and the awesome KDE Plasma desktop enviroment. 
 
-After setup, it is recommended you update this README to describe your custom image.
+IMPORTANT: Glint does NOT work with Nvidia graphics cards. Support will maybe come later down the line but for now, do not install this onto your system if you use Nvidia.
 
-## Installation
+## Preinstalled Apps
 
-> [!WARNING]  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
+1. Steam
+2. Lutris
+3. Zoom
+4. Firefox
+5. Spotify
 
-To rebase an existing atomic Fedora installation to the latest build:
+Glint also has Proton and Wine baked into it, so you can run all your favourite Windows apps!
 
-- First rebase to the unsigned image, to get the proper signing keys and policies installed:
-  ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/blue-build/template:latest
-  ```
-- Reboot to complete the rebase:
-  ```
-  systemctl reboot
-  ```
-- Then rebase to the signed image, like so:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/blue-build/template:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
+## Commands
 
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+Glint also features some custom terminal commands so you can manage your system easier. 
 
-## ISO
+- 'glint-update' - Updates your system.
+- 'glint-rollback' - If an update breaks something, you can use this to go back to your previous working system state.
+-  'glint-clean'  - Cleans up old files and cache to give you more storage space.
 
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/how-to/generate-iso/#_top). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
+## Installation Guide
 
-## Verification
+1. Download the latest 'glint-iso' from the **Actions** tab of this repository
+2. Flash your USB drive **(Minimum 8GB)**. Its reccomended to use **Ventoy** for this.
+3. (if you used Ventoy) Drag and drop the 'glint-linux.iso' file into your Ventoy drive.
+4. Reboot your machine and spam your boot key (could be F9,F10,F12 whatever depending on your hardware)
+5. Follow the instructions given to you. Ensure your drive is formatted to the **Btrfs** file system.
 
-These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
-
-```bash
-cosign verify --key cosign.pub ghcr.io/blue-build/template
-```
+*Note for External Game Drives:* Install **Flatseal** from the software store, select Steam/Lutris, scroll to **Filesystems**, and grant permission to `/run/media` to read games off secondary storage pools without re-downloading them.
