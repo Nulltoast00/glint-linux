@@ -5,20 +5,6 @@ image-version: rawhide
 base-image: quay.io/fedora-ostree-desktops/kinoite
 
 modules:
-  - type: dnf
-    install:
-      packages:
-        - wine-core
-        - wine-common
-        - gamemode         
-        - powertop         
-        - fastfetch        
-        - NetworkManager-wifi
-        - bluez
-        - bluez-utils
-        - pipewire-utils
-        - openjdk21 # <--- Minecraft runtime engine wrapper
-
   - type: script
     scripts:
       - glint-setup.sh
