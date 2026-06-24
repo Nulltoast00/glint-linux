@@ -1,0 +1,24 @@
+{
+  "$schema": "https://github.com",
+  "logo": {
+    "type": "file",
+    "source": "/usr/share/pixmaps/glint-logo.txt",
+    "width": 30,
+    "height": 15
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "de",
+    "terminal",
+    "cpu",
+    "gpu",
+    "memory"
+  ]
+}
