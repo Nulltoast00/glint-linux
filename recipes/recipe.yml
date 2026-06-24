@@ -1,5 +1,5 @@
 name: glint-linux 
-description: Rise and shine, Glint user... Rise and.. shine...
+description: Luv u Glint
 
 # rawhide for faster update yayyaya
 base-image: ghcr.io/fedora-linux/fedora-kinoite:rawhide
@@ -19,10 +19,10 @@ modules:
       - bluez
       - bluez-utils
       - pipewire-utils
+      - openjdk21
+      - openjdk21-fastload
 
   - type: flatpaks
-  remotes:
-      flathub: https://flathub.org
     notify: true
     install:
       - org.mozilla.firefox
@@ -45,24 +45,48 @@ modules:
         echo "vm.swappiness=5" >> /etc/sysctl.d/99-gaming.conf
         echo "fs.file-max=2097152" >> /etc/sysctl.d/99-gaming.conf
 
-        # swap 5 is good for 16 gigs pee pee poo poo
-
         echo "Injecting Global Glint Terminal Shortcuts..."
         cat << 'EOF' > /etc/profile.d/glint.sh
-        # command to update
+        # Glint Linux System Commands
         alias glint-update="rpm-ostree upgrade"
         alias glint-rollback="rpm-ostree rollback"
         alias glint-clean="flatpak uninstall --unused -y && sudo rpm-ostree cleanup -m"
         alias cls="clear"
 
-
-        # logogogo
+        # hi
         fastfetch
         EOF
 
-        echo "Inject Glint logo...."
+        echo "Overriding KDE About System Logo Graphic..."
         mkdir -p /etc/xdg/kdedefaults
         cat << 'EOF' > /etc/xdg/kdedefaults/kcm-about-distrorc
         [General]
         LogoPath=/usr/share/pixmaps/glint-logo.png
+        EOF
+
+        echo "Pre-installing SKLauncher for Cracked Minecraft..."
+        # 1. Create a system-wide directory for the launcher
+        mkdir -p /usr/share/sklauncher
+        
+        # 2. Securely download the official SKLauncher jar tool from their servers
+        curl -L -o /usr/share/sklauncher/sklauncher.jar https://skmedix.pl
+        
+        # 3. Build an automated launch runner wrapper script
+        cat << 'EOF' > /usr/bin/sklauncher
+        #!/bin/bash
+        gamemoderun java -jar /usr/share/sklauncher/sklauncher.jar
+        EOF
+        chmod +x /usr/bin/sklauncher
+
+        # 4. Create an official desktop launcher icon short-cut for the KDE Application Menu
+        mkdir -p /usr/share/applications
+        cat << 'EOF' > /usr/share/applications/sklauncher.desktop
+        [Desktop Entry]
+        Name=SKLauncher
+        Comment=Cracked Minecraft Launcher
+        Exec=/usr/bin/sklauncher
+        Icon=minecraft
+        Terminal=false
+        Type=Application
+        Categories=Game;
         EOF
