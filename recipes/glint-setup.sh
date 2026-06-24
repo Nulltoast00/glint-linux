@@ -20,27 +20,34 @@ alias glint-rollback="rpm-ostree rollback"
 alias glint-clean="flatpak uninstall --unused -y && sudo rpm-ostree cleanup -m"
 alias cls="clear"
 
-# ff lgogo on boot
+# fastfetch boot logo
 fastfetch
 EOF
 
 echo "Overriding KDE About System Logo Graphic..."
-mkdir -p /etc/xdg/kdedefaults
+mkdir -p /usr/share/pixmaps /etc/xdg/kdedefaults
 cat << 'EOF' > /etc/xdg/kdedefaults/kcm-about-distrorc
 [General]
 LogoPath=/usr/share/pixmaps/glint-logo.png
 EOF
 
-echo "Pre-configuring SKLauncher Auto-Setup for first login..."
-mkdir -p /etc/skel/.config/autostart
-
-cat << 'EOF' > /etc/skel/.config/autostart/glint-apps.desktop
+echo "Pre-configuring SKLauncher Auto-Setup Launcher icon..."
+# Using /usr/share/applications ensuring the system drops the menu shortcut cleanly
+mkdir -p /usr/share/applications
+cat << 'EOF' > /usr/share/applications/sklauncher.desktop
 [Desktop Entry]
+Name=SKLauncher Setup
+Comment=Click to install Cracked Minecraft Launcher
+Exec=bash -c "mkdir -p ~/Games/SKLauncher && curl -L -o ~/Games/SKLauncher/sklauncher.jar https://github.com && flatpak remote-add --if-not-exists flathub https://flathub.org && flatpak install -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom && zenity --info --text='Glint Linux Setup Complete! Apps and Minecraft are ready.' && sed -i 's/Name=.*/Name=SKLauncher/' ~/Desktop/sklauncher.desktop && sed -i 's/Exec=.*/Exec=gamemoderun java -jar ~\/Games\/SKLauncher\/sklauncher.jar/' ~/Desktop/sklauncher.desktop"
+Icon=minecraft
+Terminal=false
 Type=Application
-Name=Glint App Setup
-Exec=bash -c "mkdir -p ~/.var/app/games/sklauncher && curl -L -o ~/.var/app/games/sklauncher/sklauncher.jar https://github.com && flatpak remote-add --if-not-exists flathub https://flathub.org && flatpak install -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom; rm -f ~/.config/autostart/glint-apps.desktop"
-Icon=system-run
-X-KDE-AutostartScript=true
+Categories=Game;
 EOF
+
+echo "Creating an automatic Desktop Shortcut link copy..."
+mkdir -p /etc/skel/Desktop
+cp /usr/share/applications/sklauncher.desktop /etc/skel/Desktop/sklauncher.desktop
+chmod +x /etc/skel/Desktop/sklauncher.desktop || true
 
 echo "Glint master script layer finished!"
