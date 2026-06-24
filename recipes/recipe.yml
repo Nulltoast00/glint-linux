@@ -1,6 +1,8 @@
+# yaml-language-server: $schema=https://blue-build.org
 name: glint-linux 
 description: Luv u Glint
-image-version: rawhide
+image-version: latest # <--- THIS REPLACES THE RAW "RAWHIDE" TAG TRAP
+
 base-image: ghcr.io/fedora-linux/fedora-kinoite
 
 modules:
