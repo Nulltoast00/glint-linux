@@ -65,7 +65,7 @@ modules:
         LogoPath=/usr/share/pixmaps/glint-logo.png
         EOF
 
-        echo "Pre-installing SKLauncher for Cracked Minecraft..."
+        echo "Pre-installing SKLauncher..."
         mkdir -p /usr/share/sklauncher
         # Using their official direct CDN storage mirror link to prevent HTML webpage errors
         curl -L -o /usr/share/sklauncher/sklauncher.jar "https://github.com" || curl -L -o /usr/share/sklauncher/sklauncher.jar "https://skmedix.pl"
