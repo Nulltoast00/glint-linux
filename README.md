@@ -28,6 +28,6 @@ Glint also features some custom terminal commands so you can manage your system 
 2. Flash your USB drive **(Minimum 8GB)**. Its reccomended to use **Ventoy** for this.
 3. (if you used Ventoy) Drag and drop the 'glint-linux.iso' file into your Ventoy drive.
 4. Reboot your machine and spam your boot key (could be F9,F10,F12 whatever depending on your hardware)
-5. Follow the instructions given to you. Ensure your drive is formatted to the **Btrfs** file system.
+5. Click "Enable Glint" on your desktop to install all optimizations/features and apps. Ensure your drive is formatted to the **Btrfs** file system.
 
 *Note for External Game Drives:* Install **Flatseal** from the software store, select Steam/Lutris, scroll to **Filesystems**, and grant permission to `/run/media` to read games off secondary storage pools without re-downloading them.
