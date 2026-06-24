@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         recipe:
-          - recipes/recipe.yml
+          - recipe.yml
     steps:
       - name: Build Custom Image
         uses: blue-build/github-action@v1.11
@@ -31,7 +31,5 @@ jobs:
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
           maximize_build_space: true
-          # 1. This tells it to skip looking for signing keys
           build_opts: "--no-sign"
-          # 2. THIS IS THE SECRET WEAPON: IT DITCHES THE BROKEN WEB VALIDATION CHECK
-          skip_pre_build_validation: true 
+          skip_pre_build_validation: true
