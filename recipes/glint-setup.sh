@@ -32,7 +32,6 @@ EOF
 
 echo "Pre-installing SKLauncher for Cracked Minecraft..."
 mkdir -p /usr/share/sklauncher
-# Downloads the raw jar archive into the global system bin paths
 curl -L -o /usr/share/sklauncher/sklauncher.jar "https://github.com"
 
 cat << 'EOF' > /usr/bin/sklauncher
@@ -52,3 +51,8 @@ Terminal=false
 Type=Application
 Categories=Game;
 EOF
+
+echo "Bypassing broken BlueBuild validation server..."
+# This downloads your graphical apps directly from Flathub safely, without hitting the validation bug
+flatpak remote-add --if-not-exists flathub https://flathub.org
+flatpak install --system -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom
