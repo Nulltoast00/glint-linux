@@ -1,9 +1,8 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: glint-linux 
 description: Luv u Glint
-image-version: 40 # fix error
+image-version: 40
 
-# rawhide for faster update yayyaya
 base-image: ghcr.io/fedora-linux/fedora-kinoite:rawhide
 
 modules:
@@ -67,8 +66,7 @@ modules:
 
         echo "Pre-installing SKLauncher..."
         mkdir -p /usr/share/sklauncher
-        # Using their official direct CDN storage mirror link to prevent HTML webpage errors
-        curl -L -o /usr/share/sklauncher/sklauncher.jar "https://github.com" || curl -L -o /usr/share/sklauncher/sklauncher.jar "https://skmedix.pl"
+        curl -L -o /usr/share/sklauncher/sklauncher.jar "https://github.com"
         
         cat << 'EOF' > /usr/bin/sklauncher
         #!/bin/bash
