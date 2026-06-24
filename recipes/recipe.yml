@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://blue-build.org
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: glint-linux 
 description: Luv u Glint
 image-version: rawhide
@@ -20,3 +20,6 @@ modules:
         - openjdk21
 
   - type: files
+    files:
+      - usr
+      - etc
