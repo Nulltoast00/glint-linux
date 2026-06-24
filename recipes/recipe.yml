@@ -1,45 +1,46 @@
----
-# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
-name: template
-# description will be included in the image's metadata
-description: This is my personal OS image.
+name: glint-linux 
+description: Luv u Glint
 
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 42 # latest is also supported if you want new updates ASAP
+# rawhide for faster update yayyaya
+base-image: ghcr.io/fedora-linux/fedora-kinoite:rawhide
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
-  - type: files
-    files:
-      - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
-
+  # stuff i need ooga booga
   - type: dnf
-    repos:
-      copr:
-        - atim/starship
     install:
-      packages:
-        - micro
-        - starship
-    remove:
-      packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
-        - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+      - wine-core
+      - wine-common
+      - gamemode         
+      - powertop         
+      - fastfetch        
+      - mesa-va-drivers  
+      - us.zoom.Zoom
+      - com.spotify.Client
 
-  - type: default-flatpaks
-    configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
-        scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
-          - org.mozilla.firefox
-          - org.gnome.Loupe
-      - scope: user # Also add Flathub user repo, but no user packages
 
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  - type: flatpaks
+    notify: true
+    install:
+      - org.mozilla.firefox
+      - org.libreoffice.LibreOffice
+      - com.valvesoftware.Steam
+      - net.davidotek.pupgui2
+      - net.lutris.Lutris
+
+
+  - type: script
+    snippets:
+      - |
+        sed -i 's/^NAME=.*/NAME="Glint Linux"/' /etc/os-release
+        sed -i 's/^PRETTY_NAME=.*/PRETTY_NAME="Glint Linux"/' /etc/os-release
+        sed -i 's/^VARIANT=.*/VARIANT="Standard Edition"/' /etc/os-release
+        
+        echo "Applying tweaks..."
+        echo "options i915 enable_guc=3" > /etc/modprobe.d/i915.conf
+        echo "vm.swappiness=5" >> /etc/sysctl.d/99-gaming.conf
+        echo "fs.file-max=2097152" >> /etc/sysctl.d/99-gaming.conf
+
+        # swap 5 is good for 16 gigs pee pee poo poo
+
+        # also yes, i did use a bit of ai when modifying this, sorry
+
