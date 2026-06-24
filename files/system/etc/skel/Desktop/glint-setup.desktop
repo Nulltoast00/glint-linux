@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Glint App Setup
+Comment=Click to install Firefox, Steam, Spotify, Zoom, and LibreOffice
+Exec=bash -c "flatpak remote-add --if-not-exists flathub https://flathub.org && flatpak install -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom && zenity --info --text='Glint Linux Setup Complete! Your apps are now ready in the application menu.' && rm -f ~/Desktop/glint-setup.desktop"
+Icon=system-run
+Terminal=false
+Type=Application
+Categories=System;
