@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: glint-linux 
 description: Luv u Glint
 image-version: 40
@@ -7,32 +8,33 @@ base-image: ghcr.io/fedora-linux/fedora-kinoite:rawhide
 modules:
   - type: dnf
     install:
-      - wine-core
-      - wine-common
-      - gamemode         
-      - powertop         
-      - fastfetch        
-      - mesa-va-drivers  
-      - intel-media-driver
-      - NetworkManager-wifi
-      - bluez
-      - bluez-utils
-      - pipewire-utils
-      - openjdk21
-      - openjdk21-fastload
+      packages:
+        - wine-core
+        - wine-common
+        - gamemode         
+        - powertop         
+        - fastfetch        
+        - mesa-va-drivers  
+        - intel-media-driver
+        - NetworkManager-wifi
+        - bluez
+        - bluez-utils
+        - pipewire-utils
+        - openjdk21
+        - openjdk21-fastload
 
   - type: flatpaks
-    remotes:
-      flathub: https://flathub.org
+    notify: true
     install:
-      - org.mozilla.firefox
-      - org.libreoffice.LibreOffice
-      - com.valvesoftware.Steam
-      - net.davidotek.pupgui2
-      - net.lutris.Lutris
-      - com.spotify.Client
-      - us.zoom.Zoom
+      packages:
+        - org.mozilla.firefox
+        - org.libreoffice.LibreOffice
+        - com.valvesoftware.Steam
+        - net.davidotek.pupgui2
+        - net.lutris.Lutris
+        - com.spotify.Client
+        - us.zoom.Zoom
 
   - type: script
     scripts:
-      - glint-setup.sh
+      - glint-setup.sh # other tweaks
