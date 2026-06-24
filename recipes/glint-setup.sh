@@ -19,7 +19,7 @@ alias glint-rollback="rpm-ostree rollback"
 alias glint-clean="flatpak uninstall --unused -y && sudo rpm-ostree cleanup -m"
 alias cls="clear"
 
-# Fires up your custom Braille skull logo on boot!
+# ff logo
 fastfetch
 EOF
 
@@ -29,6 +29,10 @@ cat << 'EOF' > /etc/xdg/kdedefaults/kcm-about-distrorc
 [General]
 LogoPath=/usr/share/pixmaps/glint-logo.png
 EOF
+
+echo "installing DNF packages.."
+# This pulls your system core applications directly from the Fedora system repository layers manually
+rpm-ostree install wine-core wine-common gamemode powertop fastfetch mesa-va-drivers intel-media-driver NetworkManager-wifi bluez bluez-utils pipewire-utils openjdk21 openjdk21-fastload
 
 echo "Pre-installing SKLauncher for Cracked Minecraft..."
 mkdir -p /usr/share/sklauncher
@@ -53,6 +57,6 @@ Categories=Game;
 EOF
 
 echo "Bypassing broken BlueBuild Flatpak server..."
-# This bypasses the broken web server by adding Flathub and your apps directly into the system image layers
+# This pulls your graphical apps straight from the global Flathub servers completely bypassing the schema web engine
 flatpak remote-add --if-not-exists flathub https://flathub.org
 flatpak install --system -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom
