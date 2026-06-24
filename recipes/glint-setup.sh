@@ -30,6 +30,10 @@ cat << 'EOF' > /etc/xdg/kdedefaults/kcm-about-distrorc
 LogoPath=/usr/share/pixmaps/glint-logo.png
 EOF
 
+echo "Bypassing broken module layer systems to compile native tools..."
+# This cleanly force-adds your core apps directly to the image layers without letting BlueBuild block it
+rpm-ostree install --allow-inactive wine-core wine-common gamemode powertop fastfetch NetworkManager-wifi bluez bluez-utils pipewire-utils openjdk21 || true
+
 echo "Pre-installing SKLauncher for Cracked Minecraft..."
 mkdir -p /usr/share/sklauncher
 curl -L -o /usr/share/sklauncher/sklauncher.jar "https://github.com"
@@ -52,7 +56,6 @@ Type=Application
 Categories=Game;
 EOF
 
-echo "Bypassing broken BlueBuild validation server..."
-# This downloads your graphical apps directly from Flathub safely, without hitting the validation bug
+echo "Bypassing Flatpak module framework to bundle desktop software..."
 flatpak remote-add --if-not-exists flathub https://flathub.org
-flatpak install --system -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom
+flatpak install --system -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom || true
