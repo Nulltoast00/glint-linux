@@ -1,8 +1,7 @@
-name: glint-linux 
+name: glint-linux
 description: Luv u Glint
-image-version: 45
-
 base-image: ghcr.io/fedora-linux/fedora-kinoite
+image-version: rawhide
 
 modules:
   - type: script
