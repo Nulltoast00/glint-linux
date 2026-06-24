@@ -14,9 +14,8 @@ modules:
       - powertop         
       - fastfetch        
       - mesa-va-drivers  
-      - us.zoom.Zoom
-      - com.spotify.Client
-
+      - intel-media-driver
+      - NetworkManager-wifi
 
   - type: flatpaks
     notify: true
@@ -26,7 +25,8 @@ modules:
       - com.valvesoftware.Steam
       - net.davidotek.pupgui2
       - net.lutris.Lutris
-
+      - com.spotify.Client
+      - us.zoom.Zoom
 
   - type: script
     snippets:
@@ -42,5 +42,13 @@ modules:
 
         # swap 5 is good for 16 gigs pee pee poo poo
 
-        # also yes, i did use a bit of ai when modifying this, sorry
+        echo "Injecting Global Glint Terminal Shortcuts..."
+        cat << 'EOF' > /etc/profile.d/glint.sh
+        # command to update
+        alias glint-update="rpm-ostree upgrade"
+        alias glint-rollback="rpm-ostree rollback"
+        alias cls="clear"
 
+        # logogogo
+        fastfetch
+        EOF
