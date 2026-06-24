@@ -16,8 +16,13 @@ modules:
       - mesa-va-drivers  
       - intel-media-driver
       - NetworkManager-wifi
+      - bluez
+      - bluez-utils
+      - pipewire-utils
 
   - type: flatpaks
+  remotes:
+      flathub: https://flathub.org
     notify: true
     install:
       - org.mozilla.firefox
@@ -51,4 +56,11 @@ modules:
 
         # logogogo
         fastfetch
+        EOF
+
+        echo "Inject Glint logo...."
+        mkdir -p /etc/xdg/kdedefaults
+        cat << 'EOF' > /etc/xdg/kdedefaults/kcm-about-distrorc
+        [General]
+        LogoPath=/usr/share/pixmaps/glint-logo.png
         EOF
