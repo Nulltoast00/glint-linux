@@ -24,6 +24,9 @@ jobs:
         recipe:
           - recipe.yml
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Build Custom Image
         uses: blue-build/github-action@v1.11
         with:
@@ -33,24 +36,22 @@ jobs:
           maximize_build_space: true
           build_opts: "--no-sign"
 
-      # THIS FORCES THE CLOUD TO CONVERT YOUR CONTAINER INTO A TRADITIONAL ISO FILE!
+      # THIS CONVERTS YOUR SYSTEM INTO A TRADITIONAL OFFLINE ISO FILE!
       - name: Generate Offline ISO Installer
         uses: blue-build/github-action@v1.11
         with:
           recipe: ${{ matrix.recipe }}
           build_opts: "--no-sign"
-          # This tells the utility core to spit out a flashable file partition
           generate_iso: true 
 
-      # Automatically pushes your finished ISO onto your front Releases tab!
+      # Automatically pushes your finished ISO straight onto your Releases page!
       - name: Upload ISO to GitHub Releases
-        uses: softprops/action-gh-releases@v2
-        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2 # <--- FIXED TYPO (SINGULAR "RELEASE")
         with:
           tag_name: "v1.0.0"
           name: "Glint Linux (Standard Edition)"
           body: |
-            Official offline bootable ISO installer for **Glint Linux**!
+            Official offline bootable ISO installer for **Glint Linux**
             
             Flash this file directly onto a USB drive using Ventoy or Rufus.
           files: |
