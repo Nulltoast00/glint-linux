@@ -26,12 +26,12 @@ jobs:
           image_name: ${{ env.IMAGE_NAME }}
           image_repo: ${{ env.IMAGE_REGISTRY }}
           image_tag: ${{ env.IMAGE_TAG }}
+          version: '40'
           variant: 'Kinoite'
-          iso_pool: 'https://fedoraproject.org'
 
       - name: Save ISO to Summary Page
         uses: actions/upload-artifact@v4
         with:
-          name: glint-linux-rawhide-iso
+          name: glint-linux-kinoite-iso
           path: /home/runner/work/**/*.iso
           if-no-files-found: error
