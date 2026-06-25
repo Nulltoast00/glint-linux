@@ -26,7 +26,6 @@ jobs:
           image_name: ${{ env.IMAGE_NAME }}
           image_repo: ${{ env.IMAGE_REGISTRY }}
           image_tag: ${{ env.IMAGE_TAG }}
-          version: 'rawhide'
           variant: 'Kinoite'
           iso_pool: 'https://fedoraproject.org'
 
