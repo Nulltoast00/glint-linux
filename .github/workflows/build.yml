@@ -36,16 +36,16 @@ jobs:
           pr_event_number: ${{ github.event.number }}
           maximize_build_space: true
           build_opts: "--no-sign"
-          generate_iso: true # <--- INJECTED RIGHT INTO THE MAIN PASS LEVEL!
+          generate_iso: true
 
-      # Automatically pushes your finished ISO straight onto your Releases page!
+      # release
       - name: Upload ISO to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "v1.0.0"
           name: "Glint Linux"
           body: |
-            Official offline bootable ISO installer for **Glint Linux**!
+            Official bootable ISO installer for **Glint Linux**.
             
             Flash this file directly onto a USB drive using Ventoy or Rufus.
           files: |
