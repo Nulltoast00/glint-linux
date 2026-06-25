@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "Branding the system as Glint Linux..."
+echo "Starting up Glint..."
 sed -i 's/^NAME=.*/NAME="Glint Linux"/' /etc/os-release || true
 sed -i 's/^PRETTY_NAME=.*/PRETTY_NAME="Glint Linux"/' /etc/os-release || true
 sed -i 's/^VARIANT=.*/VARIANT="Standard Edition"/' /etc/os-release || true
 
-echo "Applying Intel performance tweaks..."
+echo "Applying performance tweaks..."
 mkdir -p /etc/modprobe.d /etc/sysctl.d
 echo "options i915 enable_guc=3" > /etc/modprobe.d/i915.conf
 echo "vm.swappiness=5" >> /etc/sysctl.d/99-gaming.conf
@@ -31,7 +31,7 @@ cat << 'EOF' > /etc/xdg/kdedefaults/kcm-about-distrorc
 LogoPath=/usr/share/pixmaps/glint-logo.png
 EOF
 
-echo "Pre-configuring SKLauncher Auto-Setup Launcher icon..."
+echo "Configuring SKlauncher.."
 # Using /usr/share/applications ensuring the system drops the menu shortcut cleanly
 mkdir -p /usr/share/applications
 cat << 'EOF' > /usr/share/applications/sklauncher.desktop
@@ -50,4 +50,4 @@ mkdir -p /etc/skel/Desktop
 cp /usr/share/applications/sklauncher.desktop /etc/skel/Desktop/sklauncher.desktop
 chmod +x /etc/skel/Desktop/sklauncher.desktop || true
 
-echo "Glint master script layer finished!"
+echo "Glint master script layer finished."
