@@ -28,6 +28,7 @@ jobs:
           image_tag: ${{ env.IMAGE_TAG }}
           version: '40'
           variant: 'Kinoite'
+          installer_strategy: 'livemedia-creator'
 
       - name: Save ISO to Summary Page
         uses: actions/upload-artifact@v4
