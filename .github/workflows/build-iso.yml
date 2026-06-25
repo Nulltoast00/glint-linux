@@ -1,0 +1,41 @@
+name: Build ISO
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  IMAGE_NAME: glint-linux
+  IMAGE_TAG: latest
+  FEDORA_VERSION: 44
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build ISO Installer
+        uses: jasonn3/build-container-installer@main
+        id: build
+        with:
+          arch: x86_64
+          image_name: ${{ env.IMAGE_NAME }}
+          image_repo: ${{ env.IMAGE_REGISTRY }}
+          image_tag: ${{ env.IMAGE_TAG }}
+          version: ${{ env.FEDORA_VERSION }}
+          variant: 'Kinoite'
+
+      - name: Save ISO to Summary Page
+        uses: actions/upload-artifact@v4
+        with:
+          name: glint-linux
+          path: |
+            ${{ steps.build.outputs.iso_path }}/${{ steps.build.outputs.iso_name }}
+            ${{ steps.build.outputs.iso_path }}/${{ steps.build.outputs.iso_name }}-CHECKSUM
+          if-no-files-found: error
+          retention-days: 2
