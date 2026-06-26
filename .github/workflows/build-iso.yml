@@ -25,7 +25,7 @@ jobs:
           image_name: ${{ env.IMAGE_NAME }}
           image_repo: ghcr.io/nulltoast00
           image_tag: ${{ env.IMAGE_TAG }}
-          version: '40'
+          version: '41'
           variant: 'Kinoite'
 
       - name: Save ISO to Summary Page
