@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
   IMAGE_NAME: glint-linux
   IMAGE_TAG: latest
 
@@ -24,7 +23,7 @@ jobs:
         with:
           arch: x86_64
           image_name: ${{ env.IMAGE_NAME }}
-          image_repo: ${{ env.IMAGE_REGISTRY }}
+          image_repo: ghcr.io/nulltoast00
           image_tag: ${{ env.IMAGE_TAG }}
           version: '40'
           variant: 'Kinoite'
