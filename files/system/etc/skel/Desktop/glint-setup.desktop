@@ -1,8 +1,9 @@
 [Desktop Entry]
-Name=Enable Glint
-Comment=Click to finalize your custom drivers, tools, and apps
-Exec=bash -c "echo 'Bypassing cloud locks to install system layers...' && pkexec rpm-ostree install -y wine-core wine-common gamemode powertop fastfetch NetworkManager-wifi bluez bluez-utils pipewire-utils openjdk21 && flatpak remote-add --if-not-exists flathub https://flathub.org && flatpak install -y flathub org.mozilla.firefox org.libreoffice.LibreOffice com.valvesoftware.Steam net.davidotek.pupgui2 net.lutris.Lutris com.spotify.Client us.zoom.Zoom && zenity --info --text='Glint Linux is now activated. Your system drivers and apps are ready. Reboot your system to finalize setup.' && rm -f '~/Desktop/Enable Glint.desktop'"
-Icon=system-run
-Terminal=false
+Version=1.0
 Type=Application
+Name=Enable Glint
+Comment=Initialize Glint Linux Apps and Optimizations
+Exec=bash /usr/share/pixmaps/glint-setup.sh
+Icon=/usr/share/pixmaps/logo.png
+Terminal=true
 Categories=System;
