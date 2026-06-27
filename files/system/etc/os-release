@@ -1,0 +1,15 @@
+NAME="Glint Linux"
+VERSION="Standard"
+ID=glint
+ID_LIKE=fedora
+VERSION_CODENAME=""
+VERSION_ID=41
+PRETTY_NAME="Glint Linux Standard"
+ANSI_COLOR="0;34"
+LOGO="logo"
+CPE_NAME="cpe:/o:glintproject:glint:41"
+HOME_URL="https://github.com"
+DOCUMENTATION_URL="https://github.com"
+SUPPORT_URL="https://github.com"
+BUG_REPORT_URL="https://github.com"
+DEFAULT_HOSTNAME="glint-desktop"
