@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kcfg xmlns="http://kde.org"
+      xmlns:xsi="http://w3.org"
+      xsi:schemaLocation="http://kde.org http://kde.org/kcfg.xsd">
+  <group name="General">
+    <entry name="icon" type="String">
+      <default>/usr/share/pixmaps/glint-logo.png</default>
+    </entry>
+    <entry name="useCustomButtonImage" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="customButtonImage" type="String">
+      <default>/usr/share/pixmaps/glint-logo.png</default>
+    </entry>
+  </group>
+</kcfg>
