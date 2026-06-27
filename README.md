@@ -1,5 +1,7 @@
 ## Glint Linux 
 
+note: for now this project is set aside for a bit. i have learned a lot and ill probably eventually come back to it some day
+
 Glint Linux is a custom made operating system built specifically for Intel and AMD devices. It is an atomic, immutable "remix" powered by Fedora Kinoite Rawhide and the awesome KDE Plasma desktop enviroment. 
 
 <p align="center">
